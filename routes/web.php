@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,9 @@ Route::get('/', function () {
 Route::get('blog', function () {
     return response("<h1>This is blog 1</h1>", 404);
 });
+
+Route::get('add', function () {
+    return view('addUser');
+});
+
+Route::post('add', [UserController::class, 'store']);
