@@ -3,27 +3,23 @@
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use function Ramsey\Uuid\v1;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
 
-Route::get('blog', function () {
-    return response("<h1>This is blog 1</h1>", 404);
+Route::get('/login', function () {
+    return view('user.login');
 });
 
-Route::get('add', function () {
-    return view('addUser');
+Route::get('/register', function () {
+    return view('user.signup');
 });
 
-Route::post('add', [UserController::class, 'store']);
+
+Route::post('/users', [UserController::class, 'store']);
+
+Route::post('/logout', [UserController::class, 'logout']);
+
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
